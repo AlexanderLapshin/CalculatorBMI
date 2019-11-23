@@ -1,1 +1,29 @@
-<p>history works!</p>
+<div class="container">
+  <a routerLink="/home" class="btn btn-primary">Back to Calculator</a>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Weight(kg)</th>
+        <th scope="col">Height(cm)</th>
+        <th scope="col">Index(BMI)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let record of userHistoryBMI; let i = index"
+        class="table-success"
+        [ngClass]="{
+          'table-danger': record.index > 25,
+          'table-info': record.index < 18.5
+        }"
+      >
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ record.weight }}</td>
+        <td>{{ record.height }}</td>
+        <td>{{ record.index }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,1 +1,53 @@
-<p>home works!</p>
+<h2>Body Mass Index Calculator</h2>
+<div class="form-container">
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="form-group">
+      <label for="weight">Weight:</label>
+      <input
+        [(ngModel)]="userWeight"
+        #weight="ngModel"
+        required
+        min="1"
+        class="form-control"
+        name="weight"
+        type="number"
+        placeholder="kg"
+      />
+    </div>
+    <div class="alert alert-danger" *ngIf="weight.touched && !weight.valid">
+      <div *ngIf="weight.errors['required']">Weight is required.</div>
+      <div *ngIf="weight.errors['min']">
+        Weight should be greater than 0
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="height">Height:</label>
+      <input
+        [(ngModel)]="userHeight"
+        #height="ngModel"
+        required
+        pattern="[0-9]*"
+        min="0"
+        max="300"
+        class="form-control"
+        name="height"
+        type="number"
+        placeholder="cm"
+      />
+    </div>
+    <div class="alert alert-danger" *ngIf="height.touched && !height.valid">
+      <div *ngIf="height.errors['required']">Height is required.</div>
+      <div *ngIf="height.errors['pattern']">Height should be a number.</div>
+      <div *ngIf="height.errors['maxlength']">
+        Height should be a three-digit number.
+      </div>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+  </form>
+</div>
+<div class="text-center">
+  <a routerLink="/history" class="btn btn-primary">History</a>
+</div>
